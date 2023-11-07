@@ -1,0 +1,37 @@
+#!/bin/bash
+
+COMMAND=$1
+CONTAINER_NAME=$2
+
+if [[ -z $COMMAND ]]; then
+  echo "please specify a command: run attach"
+  exit -1
+fi
+
+if [[ -z $CONTAINER_NAME ]]; then
+  echo "please specify a container name"
+  exit -1
+fi
+
+CURR_PWD=$PWD
+
+run() {
+  docker run \
+    --name $1 \
+    --rm \
+    -it \
+    -d \
+    -v ${CURR_PWD}:/home/software/project \
+    linux-workspace:latest
+}
+
+attach() {
+  docker exec -it $1 /bin/bash
+}
+
+case $COMMAND in
+  run) run $CONTAINER_NAME;;
+  attach ) attach $CONTAINER_NAME;;
+  *) echo "supported: run attach" ;;
+esac
+
