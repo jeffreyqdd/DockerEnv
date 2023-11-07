@@ -1,4 +1,4 @@
-# Linux Env
+# Docker Env
 
 Launch a linux dev environment anywhere on your non linux operating system. 
 
@@ -10,6 +10,7 @@ Requires docker with buildkit.
 3. `make docker`
 
 To access the included script anywhere, add this to your bashrc or zshrc
+
 `export PATH=/path/to/project/root/bin:$PATH`
 
 
